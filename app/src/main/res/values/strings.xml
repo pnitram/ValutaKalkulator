@@ -6,4 +6,5 @@
     <string name="EN">EUR -> NOK</string>
     <string name="E_tekst">Tast inn beløp</string>
     <string name="errorInput">Du må taste noen tall</string>
+    <string name="veksle">Veksle</string>
 </resources>

@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView mErrorMsg;
     Button mButton1;
     Button mButton2;
+    Button mButton3;
     RadioButton mRadioButton1;
     RadioButton mRadioButton2;
     private static final String INPUT_TEXT_VALUE = "inputTextValue";
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mErrorMsg.setTextColor(Color.RED);
         //mButton1 = (Button) findViewById(R.id.button1);
         //mButton2 = (Button) findViewById(R.id.button2);
+        mButton3 = (Button) findViewById(R.id.button3);
         mRadioButton1 = (RadioButton) findViewById(R.id.rNE);
         mRadioButton2 = (RadioButton) findViewById(R.id.rEN);
         mValutaInput.setOnClickListener(this);
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    protected void nokToEur(View view) {
+    protected void nokToEur() {
 
         Log.d("TAG","NOKtoEUR pressed");
         nokToEurBase();
@@ -106,26 +108,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
 
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.rNE:
-                if (checked) {
-                    Log.d("TAG","NOKtoEUR radio checked");
-                    nokToEurBase();
-                }
-                break;
-            case R.id.rEN:
-                if (checked) {
-                    Log.d("TAG","EURtoNOK radio checked");
-                    eurToNokBase();
-                }
-                break;
+    public void veksle(View view) {
+
+        mErrorMsg.setText("");
+
+        if (mRadioButton1.isChecked()) {
+            nokToEurBase();
+        }
+        else if (mRadioButton2.isChecked()) {
+            eurToNokBase();
+        }
+        else if (!mRadioButton1.isChecked() || !mRadioButton2.isChecked()){
+            mErrorMsg.setText(R.string.errorInput);
         }
     }
+
 
     @Override
     protected void onSaveInstanceState (Bundle outState) {

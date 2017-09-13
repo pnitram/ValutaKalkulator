@@ -64,7 +64,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"/>
+
 -->
+            <Button
+                android:id="@+id/button3"
+                android:text="@string/veksle"
+                android:onClick="veksle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"/>
+
+
             <RadioGroup
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -76,15 +86,13 @@
                     android:id="@+id/rNE"
                     android:text="@string/NE"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onRadioButtonClicked" />
+                    android:layout_height="wrap_content" />
 
                 <RadioButton
                     android:id="@+id/rEN"
                     android:text="@string/EN"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onRadioButtonClicked" />                   />
+                    android:layout_height="wrap_content" />                   />
 
             </RadioGroup>
 
