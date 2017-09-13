@@ -1,0 +1,6 @@
+<rates>
+    <rate text="NOK->EUR" exrate="0.14"/>
+    <rate text="EUR->NOK" exrate="7.5"/>
+    <rate text="NOK->USD" exrate="0.17"/>
+    <rate text="USD->NOK" exrate="5.5"/>
+</rates>
