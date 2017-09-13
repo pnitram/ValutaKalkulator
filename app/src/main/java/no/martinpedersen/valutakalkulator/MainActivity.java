@@ -56,8 +56,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             //Saved as settings
             SharedPreferences settings = getSharedPreferences("Radio", 0);
-            mRadioButton1.setChecked(settings.getBoolean("radioA", false));
-            mRadioButton2.setChecked(settings.getBoolean("radioB", false));
+            //mRadioButton1.setChecked(settings.getBoolean("radioA", false));
+            //mRadioButton2.setChecked(settings.getBoolean("radioB", false));
         }
 
         //Spinner
@@ -173,11 +173,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         outState.putString(OUTPUT_TEXT_VALUE, mValutaView.getText().toString());
 
         //Saved as settings
-        SharedPreferences settings = getSharedPreferences("Radio", 0);
+/*        SharedPreferences settings = getSharedPreferences("Radio", 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean("radio1", mRadioButton1.isChecked());
         editor.putBoolean("radio2", mRadioButton2.isChecked());
-        editor.commit();
+        editor.commit();*/
 
         }
 
