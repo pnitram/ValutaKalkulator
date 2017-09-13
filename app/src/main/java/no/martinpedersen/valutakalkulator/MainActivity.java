@@ -1,5 +1,7 @@
 package no.martinpedersen.valutakalkulator;
 
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -20,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button mButton2;
     RadioButton mRadioButton1;
     RadioButton mRadioButton2;
+    private static final String INPUT_TEXT_VALUE = "inputTextValue";
+    private static final String OUTPUT_TEXT_VALUE = "outputTextValue";
 
 
     @Override
@@ -34,8 +39,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //mButton1 = (Button) findViewById(R.id.button1);
         //mButton2 = (Button) findViewById(R.id.button2);
         mRadioButton1 = (RadioButton) findViewById(R.id.rNE);
-        mRadioBut55555ton2 = (RadioButton) findViewById(R.id.rEN);
+        mRadioButton2 = (RadioButton) findViewById(R.id.rEN);
         mValutaInput.setOnClickListener(this);
+
+        if (savedInstanceState != null) {
+            //Saved as instanceState
+            mValutaInput.setText(savedInstanceState.getString(INPUT_TEXT_VALUE));
+            mValutaView.setText(savedInstanceState.getString(OUTPUT_TEXT_VALUE));
+
+            //Saved as settings
+            SharedPreferences settings = getSharedPreferences("Radio", 0);
+            mRadioButton1.setChecked(settings.getBoolean("radioA", false));
+            mRadioButton2.setChecked(settings.getBoolean("radioB", false));
+        }
 
     }
 
@@ -111,7 +127,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-}
+    @Override
+    protected void onSaveInstanceState (Bundle outState) {
+        //Saved as instanceState
+        super.onSaveInstanceState(outState);
+        outState.putString(INPUT_TEXT_VALUE, mValutaInput.getText().toString());
+        outState.putString(OUTPUT_TEXT_VALUE, mValutaView.getText().toString());
+
+        //Saved as settings
+        SharedPreferences settings = getSharedPreferences("Radio", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean("radio1", mRadioButton1.isChecked());
+        editor.putBoolean("radio2", mRadioButton2.isChecked());
+        editor.commit();
+
+        }
+    }
+
+
 
 
 
