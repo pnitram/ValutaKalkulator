@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string-array name="fromToArray">
+            <item>NOK to EUR</item>
+            <item>EUR to NOK</item>
+            <item>NOK to USD</item>
+            <item>USD to NOK</item>
+            <item>NOK to GBP</item>
+            <item>GBP to NOK</item>
+        </string-array>
+</resources>

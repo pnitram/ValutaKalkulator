@@ -7,13 +7,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
     TextView mValutaView;
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button mButton3;
     RadioButton mRadioButton1;
     RadioButton mRadioButton2;
+    String spinnerValue;
     private static final String INPUT_TEXT_VALUE = "inputTextValue";
     private static final String OUTPUT_TEXT_VALUE = "outputTextValue";
 
@@ -40,9 +44,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //mButton1 = (Button) findViewById(R.id.button1);
         //mButton2 = (Button) findViewById(R.id.button2);
         mButton3 = (Button) findViewById(R.id.button3);
-        mRadioButton1 = (RadioButton) findViewById(R.id.rNE);
-        mRadioButton2 = (RadioButton) findViewById(R.id.rEN);
-        mValutaInput.setOnClickListener(this);
+        //mRadioButton1 = (RadioButton) findViewById(R.id.rNE);
+        //mRadioButton2 = (RadioButton) findViewById(R.id.rEN);
+        //mValutaInput.setOnClickListener(this);
+
 
         if (savedInstanceState != null) {
             //Saved as instanceState
@@ -55,14 +60,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mRadioButton2.setChecked(settings.getBoolean("radioB", false));
         }
 
+        //Spinner
+        Spinner spinner = (Spinner) findViewById(R.id.rateSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        R.array.fromToArray, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
     }
 
     protected void nokToEurBase() {
 
         try {
             Double input = Double.parseDouble(mValutaInput.getText().toString());
-            Double output = input/8.5;
-            mValutaView.setText(String.format("%.2f", output) + " EUR");
+            Double output;
+            switch (spinnerValue) {
+                case "NOK to EUR":
+                    output = input/8.5;
+                    mValutaView.setText(String.format("%.2f", output) + " EUR");
+                    break;
+                case "EUR to NOK":
+                    output = input/8.5;
+                    mValutaView.setText(String.format("%.2f", output) + " NOK");
+                    break;
+                case "NOK to USD":
+                    output = input/8.5;
+                    mValutaView.setText(String.format("%.2f", output) + " USD");
+                    break;
+                case "USD to NOK":
+                    output = input/8.5;
+                    mValutaView.setText(String.format("%.2f", output) + " NOK");
+                    break;
+                case "NOK to GBP":
+                    output = input/8.5;
+                    mValutaView.setText(String.format("%.2f", output) + " GBP");
+                    break;
+                case "GBP to NOK":
+                    output = input/8.5;
+                    mValutaView.setText(String.format("%.2f", output) + " NOK");
+                    break;
+            }
+
         } catch (NumberFormatException e) {
             e.printStackTrace();
             Log.d("TAG","Error nokToEur");
@@ -95,15 +134,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    @Override
-    public void onClick(View view) {
+
+    protected void clearOnClick(View view) {
 
         if(view == mValutaInput) {
             Log.d("TAG","Input and buttons cleard");
             mValutaInput.setText("");
             mErrorMsg.setText("");
-            mRadioButton1.setChecked(false);
-            mRadioButton2.setChecked(false);
+            mValutaView.setText(R.string.V_tekst);
         }
 
     }
@@ -112,8 +150,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void veksle(View view) {
 
         mErrorMsg.setText("");
+        //mValutaView.setText(spinnerValue);
+        nokToEurBase();
 
-        if (mRadioButton1.isChecked()) {
+       /* if (mRadioButton1.isChecked()) {
             nokToEurBase();
         }
         else if (mRadioButton2.isChecked()) {
@@ -121,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if (!mRadioButton1.isChecked() || !mRadioButton2.isChecked()){
             mErrorMsg.setText(R.string.errorInput);
-        }
+        }*/
     }
 
 
@@ -140,7 +180,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editor.commit();
 
         }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+        spinnerValue = adapterView.getItemAtPosition(i).toString();
+
+
     }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+}
 
 
 

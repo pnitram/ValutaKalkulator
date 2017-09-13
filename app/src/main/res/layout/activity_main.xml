@@ -39,6 +39,7 @@
         android:maxLength="11"
         android:textSize="20sp"
         android:paddingTop="70dp"
+        android:onClick="clearOnClick"
         android:inputType="numberDecimal"
         android:layout_centerHorizontal="true" />
 
@@ -74,27 +75,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"/>
 
-
-            <RadioGroup
-                android:layout_width="fill_parent"
+            <Spinner
+                android:id="@+id/rateSpinner"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@+id/button1"
-                android:paddingTop="10dp">
-
-                <RadioButton
-                    android:id="@+id/rNE"
-                    android:text="@string/NE"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <RadioButton
-                    android:id="@+id/rEN"
-                    android:text="@string/EN"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />                   />
-
-            </RadioGroup>
+                />
 
 
         </RelativeLayout>
