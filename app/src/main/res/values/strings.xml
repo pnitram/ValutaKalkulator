@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ValutaKalkulator</string>
+    <string name="version">V 1.0</string>
+    <string name="V_tekst">Her kommer beløp</string>
+    <string name="NE">NOK -> EUR</string>
+    <string name="EN">EUR -> NOK</string>
+    <string name="E_tekst">Tast inn beløp</string>
+    <string name="errorInput">Kun tall funker!</string>
 </resources>
