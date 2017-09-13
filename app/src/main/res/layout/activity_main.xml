@@ -49,7 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/eTekst" >
 
-            <Button
+
+ <!--           <Button
                 android:id="@+id/button1"
                 android:text="@string/NE"
                 android:onClick="nokToEur"
@@ -63,6 +64,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"/>
+-->
+            <RadioGroup
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/button1"
+                android:paddingTop="10dp">
+
+                <RadioButton
+                    android:id="@+id/rNE"
+                    android:text="@string/NE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked" />
+
+                <RadioButton
+                    android:id="@+id/rEN"
+                    android:text="@string/EN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked" />                   />
+
+            </RadioGroup>
+
 
         </RelativeLayout>
 

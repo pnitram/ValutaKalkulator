@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -17,6 +18,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView mErrorMsg;
     Button mButton1;
     Button mButton2;
+    RadioButton mRadioButton1;
+    RadioButton mRadioButton2;
 
 
     @Override
@@ -28,15 +31,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mValutaInput = (EditText) findViewById(R.id.eTekst);
         mErrorMsg = (TextView) findViewById(R.id.errorMsg);
         mErrorMsg.setTextColor(Color.RED);
-        mButton1 = (Button) findViewById(R.id.button1);
-        mButton2 = (Button) findViewById(R.id.button2);
+        //mButton1 = (Button) findViewById(R.id.button1);
+        //mButton2 = (Button) findViewById(R.id.button2);
+        mRadioButton1 = (RadioButton) findViewById(R.id.rNE);
+        mRadioBut55555ton2 = (RadioButton) findViewById(R.id.rEN);
         mValutaInput.setOnClickListener(this);
 
     }
 
-    protected void nokToEur(View view) {
-
-        Log.d("TAG","NOKtoEUR pressed");
+    protected void nokToEurBase() {
 
         try {
             Double input = Double.parseDouble(mValutaInput.getText().toString());
@@ -47,13 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.d("TAG","Error nokToEur");
             mErrorMsg.setText(R.string.errorInput);
         }
-
     }
 
-    protected void eurToNok(View view) {
-
-        Log.d("TAG","EURtoNOK pressed");
-
+    protected void eurToNokBase() {
         try {
             Double input = Double.parseDouble(mValutaInput.getText().toString());
             Double output = input*8.5;
@@ -65,16 +64,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    protected void nokToEur(View view) {
+
+        Log.d("TAG","NOKtoEUR pressed");
+        nokToEurBase();
+    }
+
+    protected void eurToNok(View view) {
+
+        Log.d("TAG","EURtoNOK pressed");
+        eurToNokBase();
+    }
+
 
     @Override
     public void onClick(View view) {
 
         if(view == mValutaInput) {
+            Log.d("TAG","Input and buttons cleard");
             mValutaInput.setText("");
             mErrorMsg.setText("");
+            mRadioButton1.setChecked(false);
+            mRadioButton2.setChecked(false);
         }
 
     }
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.rNE:
+                if (checked) {
+                    Log.d("TAG","NOKtoEUR radio checked");
+                    nokToEurBase();
+                }
+                break;
+            case R.id.rEN:
+                if (checked) {
+                    Log.d("TAG","EURtoNOK radio checked");
+                    eurToNokBase();
+                }
+                break;
+        }
+    }
+
 }
 
 
