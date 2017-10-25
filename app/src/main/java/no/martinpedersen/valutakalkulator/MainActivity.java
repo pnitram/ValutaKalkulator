@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, ChooseRatesActivity.class);
         startActivityForResult(intent, 1);
+
     }
 }
 

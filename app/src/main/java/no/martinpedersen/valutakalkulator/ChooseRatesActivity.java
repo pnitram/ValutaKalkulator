@@ -44,7 +44,6 @@ public class ChooseRatesActivity extends AppCompatActivity implements AdapterVie
         returnIntent.putExtra("spinnerValue", spinnerValue);
         setResult(MainActivity.RESULT_OK,returnIntent);
         finish();
-
     }
 
 }
