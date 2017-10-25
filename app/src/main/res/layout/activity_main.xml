@@ -51,22 +51,16 @@
             android:layout_below="@+id/eTekst" >
 
 
- <!--           <Button
+            <Button
                 android:id="@+id/button1"
-                android:text="@string/NE"
-                android:onClick="nokToEur"
+                android:text="@string/velgValuta"
+                android:onClick="startRateActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <Button
-                android:id="@+id/button2"
-                android:text="@string/EN"
-                android:onClick="eurToNok"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"/>
 
--->
+
+
             <Button
                 android:id="@+id/button3"
                 android:text="@string/veksle"
@@ -75,12 +69,20 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"/>
 
-            <Spinner
-                android:id="@+id/rateSpinner"
+            <TextView
+                android:id="@+id/bText"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="10sp"
+                android:layout_marginTop="60dp"
+                android:layout_centerHorizontal="true" />
+
+
 
 
         </RelativeLayout>
+
+
 
 </RelativeLayout>

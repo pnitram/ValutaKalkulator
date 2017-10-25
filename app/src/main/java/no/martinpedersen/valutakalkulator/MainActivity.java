@@ -1,5 +1,6 @@
 package no.martinpedersen.valutakalkulator;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,7 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
 
     TextView mValutaView;
@@ -23,9 +24,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Button mButton1;
     Button mButton2;
     Button mButton3;
+    TextView mBtext;
     RadioButton mRadioButton1;
     RadioButton mRadioButton2;
+
     String spinnerValue;
+
     private static final String INPUT_TEXT_VALUE = "inputTextValue";
     private static final String OUTPUT_TEXT_VALUE = "outputTextValue";
 
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mErrorMsg = (TextView) findViewById(R.id.errorMsg);
         mErrorMsg.setTextColor(Color.RED);
         mButton3 = (Button) findViewById(R.id.button3);
+        mBtext = (TextView) findViewById(R.id.bText);
 
         if (savedInstanceState != null) {
             //Saved as instanceState
@@ -48,19 +53,31 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         }
 
-        //Spinner
-        Spinner spinner = (Spinner) findViewById(R.id.rateSpinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-        R.array.fromToArray, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+            if (resultCode == ChooseRatesActivity.RESULT_OK) {
+                spinnerValue = data.getStringExtra("spinnerValue");
+                mBtext.setText("Valuta valgt: " +spinnerValue);
+
+            }
+            if (resultCode == ChooseRatesActivity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+
+        }
+
 
     }
 
     protected void exchangeMoney() {
 
         try {
+
             Double input = Double.parseDouble(mValutaInput.getText().toString());
             Double output;
             switch (spinnerValue) {
@@ -112,7 +129,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void veksle(View view) {
 
         mErrorMsg.setText("");
-        exchangeMoney();
+        if (spinnerValue!=null) {
+            exchangeMoney();
+
+        }
+
     }
 
     @Override
@@ -124,16 +145,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-        spinnerValue = adapterView.getItemAtPosition(i).toString();
-    }
+    public void startRateActivity(View view) {
 
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-        //Nothing
+        Intent intent = new Intent(this, ChooseRatesActivity.class);
+        startActivityForResult(intent, 1);
     }
 }
 
