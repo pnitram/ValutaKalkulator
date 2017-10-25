@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String INPUT_TEXT_VALUE = "inputTextValue";
     private static final String OUTPUT_TEXT_VALUE = "outputTextValue";
+    private static final String OUTPUT_TEXT_CUR = "outputTextCur";
 
 
     @Override
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             //Saved as instanceState
             mValutaInput.setText(savedInstanceState.getString(INPUT_TEXT_VALUE));
             mValutaView.setText(savedInstanceState.getString(OUTPUT_TEXT_VALUE));
+            mBtext.setText(savedInstanceState.getString(OUTPUT_TEXT_CUR));
 
         }
 
@@ -142,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putString(INPUT_TEXT_VALUE, mValutaInput.getText().toString());
         outState.putString(OUTPUT_TEXT_VALUE, mValutaView.getText().toString());
+        outState.putString(OUTPUT_TEXT_CUR, mBtext.getText().toString());
 
     }
 
