@@ -21,13 +21,8 @@ public class MainActivity extends AppCompatActivity {
     TextView mValutaView;
     EditText mValutaInput;
     TextView mErrorMsg;
-    Button mButton1;
-    Button mButton2;
     Button mButton3;
     TextView mBtext;
-    RadioButton mRadioButton1;
-    RadioButton mRadioButton2;
-
     String spinnerValue;
 
     private static final String INPUT_TEXT_VALUE = "inputTextValue";
